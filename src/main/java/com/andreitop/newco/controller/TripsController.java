@@ -2,50 +2,53 @@ package com.andreitop.newco.controller;
 
 import com.andreitop.newco.common.APIConstant;
 import com.andreitop.newco.model.Trip;
-import org.springframework.web.bind.annotation.*;
+import com.andreitop.newco.service.TripService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping(APIConstant.API_V_1 + "/trips")
 public class TripsController {
 
-    private List<Trip> trips = new ArrayList<>();
+    private final TripService tripService;
+
+    @Autowired
+    public TripsController(TripService tripService) {
+        this.tripService = tripService;
+    }
 
     @GetMapping
     public List<Trip> findAll() {
-        return trips;
+        return tripService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Trip findById(@PathVariable("id") Long id) {
-        return trips.stream()
-                .filter(t -> t.getId().equals(id))
-                .findFirst()
-                .orElse(null);
+    public Trip findById(@PathVariable("id") final Long id) {
+        return tripService.findById(id);
     }
 
     @PostMapping
-    public void add(@RequestBody Trip trip) {
-        trip.setId((long) (trips.size() + 1));
-        trips.add(trip);
+    public void create(@RequestBody final Trip trip) {
+        tripService.save(trip);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long id) {
-        trips.stream()
-                .filter(t -> t.getId().equals(id))
-                .findFirst()
-                .ifPresent(t -> trips.remove(t));
+    public void delete(@PathVariable("id") final Long id) {
+        tripService.delete(id);
     }
 
     @PutMapping
-    public void update(@RequestBody Trip newTrip) {
-        trips.stream()
-                .filter(t -> t.getId().equals(newTrip.getId()))
-                .findFirst()
-                .ifPresent(t -> trips.set(trips.indexOf(t), newTrip));
+    public void update(@RequestBody final Trip newTrip) {
+        tripService.update(newTrip);
     }
 
 }

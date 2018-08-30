@@ -1,5 +1,8 @@
 package com.andreitop.newco.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Trip {
 
     private Long id;
