@@ -26,7 +26,7 @@ public class SwaggerConfiguration {
                 new ApiInfoBuilder()
                     .title("My Beautiful RestApi")
                     .contact(new Contact("andrei dremov", "github.com/andreitop", "myemail.com"))
-                    .version("1-0.SNAPSHOT")
+                    .version("1.0-SNAPSHOT")
                     .build()
             );
     }
