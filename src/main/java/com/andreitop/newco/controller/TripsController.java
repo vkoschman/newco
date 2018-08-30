@@ -14,7 +14,6 @@ public class TripsController {
     private List<Trip> trips = new ArrayList<>();
 
     @GetMapping
-    @ResponseBody
     public List<Trip> findAll() {
         return trips;
     }
