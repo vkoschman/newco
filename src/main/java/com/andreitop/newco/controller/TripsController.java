@@ -1,7 +1,7 @@
 package com.andreitop.newco.controller;
 
 import com.andreitop.newco.common.APIConstant;
-import com.andreitop.newco.model.Trip;
+import com.andreitop.newco.dto.TripDto;
 import com.andreitop.newco.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,17 +27,17 @@ public class TripsController {
     }
 
     @GetMapping
-    public List<Trip> findAll() {
+    public List<TripDto> findAll() {
         return tripService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Trip findById(@PathVariable("id") final Long id) {
+    public TripDto findById(@PathVariable("id") final Long id) {
         return tripService.findById(id);
     }
 
     @PostMapping
-    public void create(@RequestBody final Trip trip) {
+    public void create(@RequestBody final TripDto trip) {
         tripService.save(trip);
     }
 
@@ -47,7 +47,7 @@ public class TripsController {
     }
 
     @PutMapping
-    public void update(@RequestBody final Trip newTrip) {
+    public void update(@RequestBody final TripDto newTrip) {
         tripService.update(newTrip);
     }
 

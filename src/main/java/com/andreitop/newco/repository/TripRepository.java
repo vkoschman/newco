@@ -1,6 +1,6 @@
 package com.andreitop.newco.repository;
 
-import com.andreitop.newco.model.Trip;
+import com.andreitop.newco.dto.TripDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -9,20 +9,20 @@ import java.util.List;
 @Repository
 public class TripRepository  {
 
-    private final List<Trip> trips = new ArrayList<>();
+    private final List<TripDto> trips = new ArrayList<>();
 
-    public List<Trip> findAll() {
+    public List<TripDto> findAll() {
         return trips;
     }
 
-    public Trip findById(final Long id) {
+    public TripDto findById(final Long id) {
         return trips.stream()
                 .filter(t -> t.getId().equals(id))
                 .findFirst()
                 .orElse(null);
     }
 
-    public void save(final Trip trip) {
+    public void save(final TripDto trip) {
         trip.setId((long) (trips.size() + 1));
         trips.add(trip);
     }
@@ -34,7 +34,7 @@ public class TripRepository  {
                 .ifPresent(trips::remove);
     }
 
-    public void update(final Trip newTrip) {
+    public void update(final TripDto newTrip) {
         trips.stream()
                 .filter(t -> t.getId().equals(newTrip.getId()))
                 .findFirst()

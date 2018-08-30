@@ -1,9 +1,10 @@
-package com.andreitop.newco.model;
+package com.andreitop.newco.dto;
 
-import org.springframework.stereotype.Component;
+import java.io.Serializable;
 
-@Component
-public class Trip {
+public class TripDto implements Serializable {
+
+    private static final long serialVersionUID = 5914366185889783660L;
 
     private Long id;
     private String origin;
