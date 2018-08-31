@@ -1,6 +1,6 @@
 package com.andreitop.newco.config;
 
-import com.andreitop.newco.common.APIConstant;
+import com.andreitop.newco.common.ApiConstant;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -20,7 +20,7 @@ public class SwaggerConfiguration {
         return new Docket(DocumentationType.SWAGGER_2)
             .select()
             .apis(RequestHandlerSelectors.basePackage("com.andreitop.newco.controller"))
-            .paths(PathSelectors.ant(APIConstant.API_V_1 +"/trips/**"))
+            .paths(PathSelectors.ant(ApiConstant.API_V_1 +"/trips/**"))
             .build()
             .apiInfo(
                 new ApiInfoBuilder()
