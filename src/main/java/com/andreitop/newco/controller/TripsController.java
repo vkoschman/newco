@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -43,7 +44,7 @@ public class TripsController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> create(@RequestBody final TripDto trip) {
+    public ResponseEntity<Void> create(@Valid @RequestBody final TripDto trip) {
         tripService.save(trip);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -55,7 +56,7 @@ public class TripsController {
     }
 
     @PutMapping
-    public ResponseEntity<Void> update(@RequestBody final TripDto newTrip) {
+    public ResponseEntity<Void> update(@Valid @RequestBody final TripDto newTrip) {
         tripService.update(newTrip);
         return new ResponseEntity<>(HttpStatus.OK);
     }
