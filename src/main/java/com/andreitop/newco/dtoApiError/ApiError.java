@@ -1,13 +1,20 @@
 package com.andreitop.newco.dtoApiError;
 
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class ApiError {
+    public HttpStatus getStatus() {
+        return status;
+    }
+
     private HttpStatus status;
+
     private String message;
+
     private List<String> errors;
 
     public ApiError(HttpStatus status, String message, List<String> errors) {
