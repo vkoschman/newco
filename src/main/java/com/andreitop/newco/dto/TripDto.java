@@ -1,20 +1,31 @@
 package com.andreitop.newco.dto;
 
-import java.io.Serializable;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 
-public class TripDto implements Serializable {
+public class TripDto extends Dto {
 
-    private static final long serialVersionUID = 5914366185889783660L;
-
+    @NotNull
+    @Positive
     private Long id;
+    @NotNull
+    @Pattern(regexp = "[a-zA-Z]+", message = "airport should contain only letters")
+    @Max(value = 30, message = "Airport name is too long")
     private String origin;
+    @NotNull
+    @Pattern(regexp = "[a-zA-Z]+", message = "airport should contain only letters")
+    @Max(value = 30, message = "Airport name is too long")
     private String destination;
+    @NotNull
+    @Positive
     private Integer price;
 
-    public Long getId() {
-        return id;
-    }
+    @Override
+    public Long getId() { return id; }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
